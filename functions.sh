@@ -2464,7 +2464,8 @@ encrypt_partitions() {
 
     while read line; do
       if echo "$line" | grep -q "crypted"; then
-        if [ -n "$(echo "$line" | grep "crypted" | grep -P "LVM|btrfs|no")" ]; then
+        # if [ -n "$(echo "$line" | grep "crypted" | grep -P "LVM|btrfs|no")" ]; then
+        if [ -n "$(echo "$line" | grep "crypted" | grep "LVM")" ]; then
           dev="$(echo "$line" | grep "crypted" | awk '{print $2}')"
         else
           dev="$(echo "$line" | grep "crypted" | awk '{print $1}')"
